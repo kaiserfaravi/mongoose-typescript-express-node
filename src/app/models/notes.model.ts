@@ -13,7 +13,7 @@ const noteSchema = new Schema <INote> ({
     pinned: {
         type: Boolean,
         default: false
-    },
+    }, 
     tags: {
         label: { type: String, required: true },
         color: { type: String, default: "gray" }
@@ -25,4 +25,4 @@ const noteSchema = new Schema <INote> ({
 }
 )
 
-export const Note = model<INote> ("note", noteSchema);
+export const Note = model<INote> ("Note", noteSchema);
