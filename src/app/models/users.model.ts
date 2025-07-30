@@ -17,6 +17,16 @@ const userSchema = new Schema<Iuser>({
     email:{
         type:String,
         required:true,
+        lowercase:true,
+        unique:[true, "Email already exists"],
+        validate:{
+          validator:function(v){
+            return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v);
+         },
+         message:function(props){
+            return `${props.value} is not valid email`
+         }    
+            }
 
     },
     password:{
@@ -24,10 +34,17 @@ const userSchema = new Schema<Iuser>({
         required:true,
         
     },
+    age:{
+        type:Number,
+        required:true,
+        min:18,
+        max:60,
+    },
     role:{
         type:String,
         enum:['user',"admin"],
-        default:"user"
+        default:"user",
+        lowercase:true
     }
     
    
